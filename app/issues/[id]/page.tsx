@@ -17,7 +17,7 @@ const IssueDetailPage = async ({params}: Props) => {
         <Heading as='h1'>{issue.title}</Heading>
         <Flex gap="3" my="2">
           <IssueStatusBadge status={issue.status} />
-          <Text>{issue.createdAt.toDateString()}</Text>
+          <Text>{issue.createdAt.toDateString()} sdfldfds</Text>
         </Flex>
         <Card>
           <p>{issue.description}</p>
