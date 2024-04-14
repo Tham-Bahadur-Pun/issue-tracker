@@ -43,7 +43,7 @@ const IssueForm = ({ issue }: Props) => {
       router.push("/issues");
     } catch (error) {
       setIsSubmitting(false);
-      setError("An unexpected error occured.");
+      setError("An unexpected error occurred.");
     }
   });
 
