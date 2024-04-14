@@ -1,8 +1,5 @@
-import { Box, TextField, Button, Spinner } from '@radix-ui/themes'
-import { register } from 'module'
-import React from 'react'
-import { Controller } from 'react-hook-form'
-import {Skeleton} from "@/app/components"
+import { Skeleton } from "@/app/components"
+import { Box } from '@radix-ui/themes'
 
 const LoadingNewIssuePage = () => {
   return (
