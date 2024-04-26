@@ -1,30 +1,72 @@
-import { ChevronLeftIcon, ChevronRightIcon, DoubleArrowLeftIcon, DoubleArrowRightIcon } from '@radix-ui/react-icons'
-import { Button, Flex, Text } from '@radix-ui/themes'
-import React from 'react'
+"use client";
+import {
+  ChevronLeftIcon,
+  ChevronRightIcon,
+  DoubleArrowLeftIcon,
+  DoubleArrowRightIcon,
+} from "@radix-ui/react-icons";
+import { Button, Flex, Text } from "@radix-ui/themes";
+import { useRouter, useSearchParams } from "next/navigation";
 interface Props {
-    itemCount: number
-    pageSize: number
-    currentPage: number
-}
-const Pagination = ({itemCount, pageSize, currentPage}: Props) => {
-    const pageCount = Math.ceil(itemCount/pageSize)
-  return (
-    <Flex align='center' gap='2'>
-        <Text size='2'>Page {currentPage} of {pageSize}</Text>
-        <Button color='gray' variant='soft' disabled={currentPage === 1 } className='cursor-pointer'>
-            <DoubleArrowLeftIcon/>
-        </Button>
-        <Button color='gray' variant='soft' disabled={currentPage === 1} className='cursor-pointer'>
-            <ChevronLeftIcon/>
-        </Button>
-        <Button color='gray' variant='soft' disabled={currentPage === pageCount} className='cursor-pointer'>
-            <ChevronRightIcon/>
-        </Button>
-        <Button color='gray' variant='soft' disabled={currentPage === pageCount} className='cursor-pointer'>
-            <DoubleArrowRightIcon/>
-        </Button>
-    </Flex>
-  )
+  itemCount: number;
+  pageSize: number;
+  currentPage: number;
 }
 
-export default Pagination
+const Pagination = ({ itemCount, pageSize, currentPage }: Props) => {
+  const pageCount = Math.ceil(itemCount / pageSize);
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
+  const changePage = (page: number) => {
+    const params = new URLSearchParams(searchParams);
+    params.set("page", page.toString());
+    router.push("?" + params.toString());
+  };
+
+  return (
+    <Flex align="center" gap="2">
+      <Text size="2">
+        Page {currentPage} of {pageSize}
+      </Text>
+      <Button
+        color="gray"
+        variant="soft"
+        disabled={currentPage === 1}
+        className="cursor-pointer"
+        onClick={() => changePage(1)}
+      >
+        <DoubleArrowLeftIcon />
+      </Button>
+      <Button
+        color="gray"
+        variant="soft"
+        disabled={currentPage === 1}
+        className="cursor-pointer"
+        onClick={() => changePage(currentPage - 1)}
+      >
+        <ChevronLeftIcon />
+      </Button>
+      <Button
+        color="gray"
+        variant="soft"
+        disabled={currentPage === pageCount}
+        className="cursor-pointer"
+        onClick={() => changePage(currentPage + 1)}
+      >
+        <ChevronRightIcon />
+      </Button>
+      <Button
+        color="gray"
+        variant="soft"
+        disabled={currentPage === pageCount}
+        className="cursor-pointer"
+        onClick={() => changePage(pageCount)}
+      >
+        <DoubleArrowRightIcon />
+      </Button>
+    </Flex>
+  );
+};
+
+export default Pagination;
