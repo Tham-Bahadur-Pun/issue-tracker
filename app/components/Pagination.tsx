@@ -24,10 +24,12 @@ const Pagination = ({ itemCount, pageSize, currentPage }: Props) => {
     router.push("?" + params.toString());
   };
 
+  if (pageCount <= 1) return null;
+
   return (
     <Flex align="center" gap="2">
       <Text size="2">
-        Page {currentPage} of {pageSize}
+        Page {currentPage} of {pageCount}
       </Text>
       <Button
         color="gray"
