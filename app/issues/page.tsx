@@ -102,7 +102,7 @@ const IssuePage = async ({
       </Table.Root>
       <Pagination
         currentPage={currentPage}
-        itemCount={issueCount}
+        itemCount={issueCount}  
         pageSize={pageSize}
       />
     </div>
