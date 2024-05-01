@@ -6,6 +6,7 @@ import IssueActions from "./IssueActions";
 import NextLink from "next/link";
 import { ArrowUpIcon } from "@radix-ui/react-icons";
 import Pagination from "../components/Pagination";
+import { Metadata } from "next";
 
 const IssuePage = async ({
   searchParams,
@@ -110,4 +111,9 @@ const IssuePage = async ({
 };
 
 export const dynamic = "force-dynamic";
+
+export const metadata: Metadata = {
+  title: 'Issue Tracker | Issue List',
+  description: 'All the Issue list'
+}
 export default IssuePage;
